@@ -255,15 +255,19 @@ module Gattica
         end
       end
 
+      #
+      # This check is enforsing user to get more data that is realy needed 
+      # by inclluding field (e.g for strikt filter it would return this field = filter for each record)
+      #
       # make sure that the user is only trying to filter fields that are in dimensions or metrics
-      if args[:filters]
-        missing = args[:filters].find_all do |arg|
-          !possible.include? arg.match(/^\w*/).to_s    # get the name of the filter and compare
-        end
-        unless missing.empty?
-          raise GatticaError::InvalidSort, "You are trying to filter by fields that are not in the available dimensions or metrics: #{missing.join(', ')}"
-        end
-      end
+      #if args[:filters]
+      #  missing = args[:filters].find_all do |arg|
+      #    !possible.include? arg.match(/^\w*/).to_s    # get the name of the filter and compare
+      #  end
+      #  unless missing.empty?
+      #    raise GatticaError::InvalidSort, "You are trying to filter by fields that are not in the available dimensions or metrics: #{missing.join(', ')}"
+      #  end
+      #end
 
       return args
     end
